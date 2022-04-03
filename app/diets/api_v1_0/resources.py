@@ -14,16 +14,16 @@ class DietListResource(Resource):
         args = request.args
 
         child = Child(int(args['age']), float(args['weight']),
-                      int(args['height']), int(args['activity']))
+                      int(args['height']), args['activity'], args['sex'])
 
         diet = Diet(child)
 
         # Función que obtiene la dieta filtrada en formato Json
-        # dietList = diet.getDiets()
+        dietList = diet.getDiets()
 
         if dietList is None:
             raise ObjectNotFound('No existen dietas')
-        return child.serialize()
+        return dietList
 
 api.add_resource(DietListResource, '/api/v1.0/diets',
                  endpoint='diet_list_resource')
