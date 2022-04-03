@@ -23,6 +23,7 @@ Una vez ya se tenga Conda instalado, podemos continuar con la instalación.
 1. Iniciaremos con la clonación del repositorio:
 ```sh
    git clone https://github.com/TDP-2022-01/dieta-api.git
+   cd dieta-api/
 ```
 2. Crearemos un ambiente con Conda de la siguiente manera:
  ```sh
