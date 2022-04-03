@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 class Child:
     def __init__(self, age, weight, height, activity):
         self.age = age
@@ -24,6 +25,7 @@ class Diet:
     def __init__(self, child):
         self.child = child
 
-    # Agregar aquí las funciones para filtrar la dieta
-    def getDiets():
+    # Agregar aquí las funciones para filtrar la dieta y devolver
+    # La lista filtrada en formato Json
+    def getDiets(self):
         pass

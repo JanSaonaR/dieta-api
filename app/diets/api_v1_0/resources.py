@@ -18,7 +18,7 @@ class DietListResource(Resource):
 
         diet = Diet(child)
 
-        # Función que obtiene la dieta filtrada
+        # Función que obtiene la dieta filtrada en formato Json
         # dietList = diet.getDiets()
 
         if dietList is None:
