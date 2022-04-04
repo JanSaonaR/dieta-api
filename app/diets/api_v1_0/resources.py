@@ -13,9 +13,11 @@ data = []
 
 @diets_v1_0_bp.before_app_first_request
 def getData():
-    url = 'https://raw.githubusercontent.com/TDP-2022-01/dieta-api/dev/app/diets/dataset.csv'
+    url='https://raw.githubusercontent.com/aelvismorales/flask_1/main/dataset.csv'
+    #url = 'https://raw.githubusercontent.com/TDP-2022-01/dieta-api/dev/app/diets/dataset.csv'
     global data
     data = pd.read_csv(url)
+    #print(data.head())
 
 api = Api(diets_v1_0_bp)
 
@@ -26,13 +28,13 @@ class DietListResource(Resource):
 
         child = Child(int(args['age']), float(args['weight']),
                       int(args['height']), args['activity'], args['sex'])
-
         diet = Diet(child, data)
 
         # Función que obtiene la dieta filtrada en formato Json
         dietList = []
+        #print(diet)
         dietList = diet.getDiets()
-
+        #print(dietList)
         if dietList is None:
             raise ObjectNotFound('No existen dietas')
         return dietList
