@@ -86,10 +86,9 @@ class Child:
 
 
 class Diet:
-    def __init__(self, child):
+    def __init__(self, child, data):
         self.child = child
-        url = ''
-        self.data = pd.read_csv(url, encoding='latin-1', sep=';')
+        self.data = data
 
     # Agregar aquí las funciones para filtrar la dieta y devolver
     # La lista filtrada en formato Json
@@ -127,6 +126,6 @@ class Diet:
       return dt_cena[['Alimento','Total_Comer']]
 
     def getDiets(self):
-        result = get_desayuno().to_json(orient='records')
+        result = self.get_desayuno().to_json(orient='records')
         parsed = json.loads(result)
         return json.dumps(parsed, indent=4)
