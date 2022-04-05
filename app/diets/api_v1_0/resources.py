@@ -20,6 +20,30 @@ def getData():
 
 api = Api(diets_v1_0_bp)
 
+@diets_v1_0_bp.route('/diet',methods=['POST'])
+def get_diet():
+    #print("llegaS")
+    args=request.get_json()
+    age=args['age']
+    weight=args['weight']
+    height=args['height']
+    activity=args['activity']
+    sex=args['sex']
+    days=args['days']
+
+        #print(args)
+    print("llegaS")
+    child = Child(int(age), float(weight),
+                      int(height), str(activity), str(sex))
+    diet = Diet(child, data)
+    
+        # Función que obtiene la dieta filtrada en formato Json
+    dietList = []
+    dietList = diet.getDiets(int(days))
+
+    if dietList is None:
+        raise ObjectNotFound('No existen dietas')
+    return dietList
 
 class DietListResource(Resource):
     def get(self):
