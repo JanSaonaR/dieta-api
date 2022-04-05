@@ -14,7 +14,6 @@ data = []
 @diets_v1_0_bp.before_app_first_request
 def getData():
     url = 'https://raw.githubusercontent.com/aelvismorales/flask_1/main/dataset.csv'
-    # url = 'https://raw.githubusercontent.com/TDP-2022-01/dieta-api/dev/app/diets/dataset.csv'
     global data
     data = pd.read_csv(url, encoding='utf8')
 
@@ -22,7 +21,7 @@ api = Api(diets_v1_0_bp)
 
 @diets_v1_0_bp.route('/diet',methods=['POST'])
 def get_diet():
-    #print("llegaS")
+
     args=request.get_json()
     age=args['age']
     weight=args['weight']
@@ -31,13 +30,11 @@ def get_diet():
     sex=args['sex']
     days=args['days']
 
-        #print(args)
-    print("llegaS")
     child = Child(int(age), float(weight),
                       int(height), str(activity), str(sex))
     diet = Diet(child, data)
     
-        # Función que obtiene la dieta filtrada en formato Json
+    # Función que obtiene la dieta filtrada en formato Json
     dietList = []
     dietList = diet.getDiets(int(days))
 
