@@ -237,10 +237,6 @@ class Diet:
         result_cena = self.get_cena()
         result_cena['Tipo'] = 'Cena'
 
-        #dieta = pd.concat([result_desayuno.sample(n=days).sort_values(by='Nivel_Preferencia',ascending=False),
-        #                   result_almuerzo.sample(n=days).sort_values(by='Nivel_Preferencia',ascending=False),
-        #                   result_cena.sample(n=days).sort_values(by='Nivel_Preferencia',ascending=False)], ignore_index=True)
-
         dieta = pd.concat([result_desayuno.sort_values(by='Nivel_Preferencia',ascending=False).head(n=days),
                            result_almuerzo.sort_values(by='Nivel_Preferencia',ascending=False).head(n=days),
                            result_cena.sort_values(by='Nivel_Preferencia',ascending=False).head(n=days)], ignore_index=True)                          
