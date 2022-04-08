@@ -19,7 +19,7 @@ def getData():
 
 api = Api(diets_v1_0_bp)
 
-@diets_v1_0_bp.route('/diet',methods=['POST'])
+@diets_v1_0_bp.route('/diet',methods=['GET'])
 def get_diet():
 
     args=request.get_json()
@@ -29,9 +29,9 @@ def get_diet():
     activity=args['activity']
     sex=args['sex']
     days=args['days']
-
+    preference=args['preference']
     child = Child(int(age), float(weight),
-                      int(height), str(activity), str(sex))
+                      int(height), str(activity), str(sex),list(preference))
     diet = Diet(child, data)
     
     # Función que obtiene la dieta filtrada en formato Json
