@@ -2,9 +2,13 @@ from flask import request, Blueprint, url_for
 from flask_restful import Api, Resource
 from app.common.error_handling import ObjectNotFound
 
+import warnings
 import pandas as pd
+from pandas.core.common import SettingWithCopyWarning
 
 from app.diets.models import Child, Diet
+
+warnings.simplefilter(action='ignore', category=SettingWithCopyWarning)
 
 diets_v1_0_bp = Blueprint('diets_v1_0_bp', __name__, url_prefix='/')
 
@@ -19,45 +23,36 @@ def getData():
 
 api = Api(diets_v1_0_bp)
 
-@diets_v1_0_bp.route('/diet',methods=['GET'])
-def get_diet():
-
-    args=request.get_json()
-    age=args['age']
-    weight=args['weight']
-    height=args['height']
-    activity=args['activity']
-    sex=args['sex']
-    days=args['days']
-    preference=args['preference']
-    child = Child(int(age), float(weight),
-                      int(height), str(activity), str(sex),list(preference))
-    diet = Diet(child, data)
-    
-    # Función que obtiene la dieta filtrada en formato Json
-    dietList = []
-    dietList = diet.getDiets(int(days))
-
-    if dietList is None:
-        raise ObjectNotFound('No existen dietas')
-    return dietList
 
 class DietListResource(Resource):
     def get(self):
-        args = request.args
+        args = request.get_json()
 
-        print(args)
+        keys = ['age', 'weight', 'height', 'activity', 'sex', 'days',
+                'preference']
 
-        child = Child(int(args['age']), float(args['weight']),
-                      int(args['height']), args['activity'], args['sex'])
+        for key in keys:
+            if key not in args.keys():
+                raise ObjectNotFound('Falta un campo en la petición')
+
+        age = args[keys[0]]
+        weight = args[keys[1]]
+        height = args[keys[2]]
+        activity = args[keys[3]]
+        sex = args[keys[4]]
+        days = args[keys[5]]
+        preference = args[keys[6]]
+
+        child = Child(age, weight, height, activity, sex, preference)
+
         diet = Diet(child, data)
 
-        # Función que obtiene la dieta filtrada en formato Json
-        dietList = []
-        dietList = diet.getDiets(int(args['days']))
+        dietList = None
+        dietList = diet.getDiets(days)
 
         if dietList is None:
             raise ObjectNotFound('No existen dietas')
+
         return dietList
 
 api.add_resource(DietListResource, '/api/v1.0/diets',
