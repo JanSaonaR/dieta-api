@@ -105,17 +105,17 @@ class Diet:
     def __init__(self, child, data):
         self.child = child
         self.data = data
-
+    
     def get_desayuno(self):
         dt_desayuno = self.data[(self.data['Horario_1'] == 'Desayuno') |
                                 (self.data['Horario_2'] == 'Desayuno')]
 
-        dt_desayuno['Total_Calorias_Desayuno'] = (self.child.get_cal_d() +
+        dt_desayuno['Total_Calorias'] = round((self.child.get_cal_d() +
                                                   self.child.get_g_d() +
-                                                  self.child.get_p_d())
+                                                  self.child.get_p_d()))
 
         dt_desayuno['Multiplicador_Cantidad_Comer'] = \
-            (dt_desayuno['Total_Calorias_Desayuno'] /
+            (dt_desayuno['Total_Calorias'] /
              dt_desayuno['Calorias_Total_100g'])
 
         dt_desayuno['Cumple_Requisitos'] = dt_desayuno.apply(requierement_ok,
@@ -138,12 +138,12 @@ class Diet:
             (round(dt_desayuno['Carbohidratos'] *
              dt_desayuno['Multiplicador_Cantidad_Comer']))
 
-        dt_desayuno['split_ingredientes'] = \
+        dt_desayuno['Ingredientes'] = \
             dt_desayuno.apply(split_ingredients, axis=1)
 
         cont_preference = []
 
-        for j in (dt_desayuno['split_ingredientes']):
+        for j in (dt_desayuno['Ingredientes']):
             n = 0
             for i in self.child.preference:
                 if i in j:
@@ -153,19 +153,19 @@ class Diet:
         dt_desayuno['Nivel_Preferencia'] = cont_preference
 
         return dt_desayuno[['Alimento', 'Proteinas', 'Grasas',
-                            'Carbohidratos', 'Cantidad_Gramos_Consumir',
-                            'Nivel_Preferencia']]
+                            'Carbohidratos', 'Cantidad_Gramos_Consumir','Total_Calorias','Ingredientes',
+                            'Nivel_Preferencia','Image_url']]
 
     def get_almuerzo(self):
         dt_almuerzo = self.data[(self.data['Horario_1'] == 'Almuerzo') |
                                 (self.data['Horario_2'] == 'Almuerzo')]
 
-        dt_almuerzo['Total_Calorias_Almuerzo'] = (self.child.get_cal_a() +
+        dt_almuerzo['Total_Calorias'] = round((self.child.get_cal_a() +
                                                   self.child.get_g_a() +
-                                                  self.child.get_p_a())
+                                                  self.child.get_p_a()))
 
         dt_almuerzo['Multiplicador_Cantidad_Comer'] = \
-            (dt_almuerzo['Total_Calorias_Almuerzo'] /
+            (dt_almuerzo['Total_Calorias'] /
              dt_almuerzo['Calorias_Total_100g'])
 
         dt_almuerzo['Cumple_Requisitos'] = \
@@ -188,12 +188,12 @@ class Diet:
             round(dt_almuerzo['Carbohidratos'] *
                   dt_almuerzo['Multiplicador_Cantidad_Comer'])
 
-        dt_almuerzo['split_ingredientes'] = \
+        dt_almuerzo['Ingredientes'] = \
             dt_almuerzo.apply(split_ingredients, axis=1)
 
         cont_preference = []
 
-        for j in (dt_almuerzo['split_ingredientes']):
+        for j in (dt_almuerzo['Ingredientes']):
             n = 0
             for i in self.child.preference:
                 if i in j:
@@ -203,19 +203,19 @@ class Diet:
         dt_almuerzo['Nivel_Preferencia'] = cont_preference
 
         return dt_almuerzo[['Alimento', 'Proteinas', 'Grasas',
-                            'Carbohidratos', 'Cantidad_Gramos_Consumir',
-                            'Nivel_Preferencia']]
+                            'Carbohidratos', 'Cantidad_Gramos_Consumir','Total_Calorias','Ingredientes',
+                            'Nivel_Preferencia','Image_url']]
 
     def get_cena(self):
         dt_cena = self.data[(self.data['Horario_1'] == 'Almuerzo') |
                             (self.data['Horario_2'] == 'Almuerzo')]
 
-        dt_cena['Total_Calorias_Cena'] = (self.child.get_cal_d() +
+        dt_cena['Total_Calorias'] = round((self.child.get_cal_d() +
                                           self.child.get_g_d() +
-                                          self.child.get_p_d())
+                                          self.child.get_p_d()))
 
         dt_cena['Multiplicador_Cantidad_Comer'] =\
-            (dt_cena['Total_Calorias_Cena'] / dt_cena['Calorias_Total_100g'])
+            (dt_cena['Total_Calorias'] / dt_cena['Calorias_Total_100g'])
 
         dt_cena['Cumple_Requisitos'] = dt_cena.apply(requierement_ok, axis=1)
 
@@ -233,12 +233,12 @@ class Diet:
             round(dt_cena['Carbohidratos'] *
                   dt_cena['Multiplicador_Cantidad_Comer'])
 
-        dt_cena['split_ingredientes'] = \
+        dt_cena['Ingredientes'] = \
             dt_cena.apply(split_ingredients, axis=1)
 
         cont_preference = []
 
-        for j in (dt_cena['split_ingredientes']):
+        for j in (dt_cena['Ingredientes']):
             n = 0
             for i in self.child.preference:
                 if i in j:
@@ -248,7 +248,7 @@ class Diet:
         dt_cena['Nivel_Preferencia'] = cont_preference
 
         return dt_cena[['Alimento', 'Proteinas', 'Grasas', 'Carbohidratos',
-                        'Cantidad_Gramos_Consumir', 'Nivel_Preferencia']]
+                        'Cantidad_Gramos_Consumir', 'Total_Calorias','Ingredientes','Nivel_Preferencia','Image_url']]
 
     def getDiets(self, days):
         result_desayuno = self.get_desayuno()
