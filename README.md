@@ -57,9 +57,10 @@ Una vez ya se tenga Conda instalado, podemos continuar con la instalación.
  - /api/v1.0/diets
 
  ### Campos del API
- - age: Edad del niño
- - weight: Peso del niño
- - height: Altura del niño
- - activity: Nivel de actividad del niño (sedentario, baja_actividad, activo, muy_activo)
- - sex: Género del niño (**F** = Femenino, **M** = Masculino)
- - preference: Lista de los ingredientes que el niño prefiere
+ - age: Edad del niño - Entero
+ - weight: Peso del niño - Flotante
+ - height: Altura del niño - Entero 
+ - activity: Nivel de actividad del niño (sedentario, baja_actividad, activo, muy_activo) - Cadena de texto
+ - sex: Género del niño (**F** = Femenino, **M** = Masculino) - Caracter
+ - preference: Lista de los ingredientes que el niño prefiere - Lista de cadenas de texto - **IMPORTANTE:** Para
+ evidenciar que el niño no tiene preferencias, se debe de enviar una lista vacía.
