@@ -54,4 +54,4 @@ Una vez ya se tenga Conda instalado, podemos continuar con la instalación.
    flask run
   ```
  ### Ruta del API
- - api/v1.0/diets?age=10&weight=35.0&height=135&activity=Sedentario&sex=F
+ - /api/v1.0/diets?age=6&weight=35.0&height=175&activity=sedentario&sex=F&days=15
