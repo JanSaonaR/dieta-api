@@ -54,4 +54,12 @@ Una vez ya se tenga Conda instalado, podemos continuar con la instalación.
    flask run
   ```
  ### Ruta del API
- - /api/v1.0/diets?age=6&weight=35.0&height=175&activity=sedentario&sex=F&days=15
+ - /api/v1.0/diets
+
+ ### Campos del API
+ - age: Edad del niño
+ - weight: Peso del niño
+ - height: Altura del niño
+ - activity: Nivel de actividad del niño (sedentario, baja_actividad, activo, muy_activo)
+ - sex: Género del niño (**F** = Femenino, **M** = Masculino)
+ - preference: Lista de los ingredientes que el niño prefiere
