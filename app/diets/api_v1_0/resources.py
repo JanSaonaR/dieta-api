@@ -25,7 +25,7 @@ api = Api(diets_v1_0_bp)
 
 
 class DietListResource(Resource):
-    def get(self):
+    def post(self):
         args = request.get_json()
 
         keys = ['age', 'weight', 'height', 'activity', 'sex', 'days',
