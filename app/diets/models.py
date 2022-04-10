@@ -105,6 +105,7 @@ class Diet:
     def __init__(self, child, data):
         self.child = child
         self.data = data
+        self.data['Image_url']=self.data['Image_url'].fillna('')
     
     def get_desayuno(self):
         dt_desayuno = self.data[(self.data['Horario_1'] == 'Desayuno') |
