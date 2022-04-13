@@ -42,8 +42,9 @@ class DietListResource(Resource):
         sex = args[keys[4]]
         days = args[keys[5]]
         preference = args[keys[6]]
-
+   
         child = Child(age, weight, height, activity, sex, preference)
+ 
 
         diet = Diet(child, data)
 
@@ -55,5 +56,32 @@ class DietListResource(Resource):
 
         return dietList
 
+class recomendation(Resource):
+    def post(self):
+        args=request.get_json()
+
+        keys=['type','calories']
+        for key in keys:
+            if key not in args.keys():
+                raise ObjectNotFound('Falta un campo en la petición')
+        type=args[keys[0]]
+        calories=args[keys[1]]
+
+        child=Child(type,calories)
+        diet = Diet(child, data)
+
+        dietList=None
+        dietList=diet.get3foods()
+
+        if dietList is None:
+            raise ObjectNotFound('No existen dietas')
+
+        return dietList
+
+
 api.add_resource(DietListResource, '/api/v1.0/diets',
                  endpoint='diet_list_resource')
+
+api.add_resource(recomendation, '/api/v1.0/refoods',
+                 endpoint='recomendation')
+
