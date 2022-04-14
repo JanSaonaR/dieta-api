@@ -1,11 +1,11 @@
-from flask import request, Blueprint, url_for
-from flask_restful import Api, Resource
-from app.common.error_handling import ObjectNotFound
-
 import warnings
+
+from flask import Blueprint, request
+from flask_restful import Api, Resource
 import pandas as pd
 from pandas.core.common import SettingWithCopyWarning
 
+from app.common.error_handling import ObjectNotFound
 from app.diets.models import Child, Diet
 
 warnings.simplefilter(action='ignore', category=SettingWithCopyWarning)
@@ -20,6 +20,7 @@ def getData():
     url = 'https://raw.githubusercontent.com/aelvismorales/flask_1/main/dataset.csv'
     global data
     data = pd.read_csv(url, encoding='utf8')
+
 
 api = Api(diets_v1_0_bp)
 
@@ -55,5 +56,32 @@ class DietListResource(Resource):
 
         return dietList
 
+
+class recomendation(Resource):
+    def post(self):
+        args = request.get_json()
+
+        keys = ['type', 'calories']
+        for key in keys:
+            if key not in args.keys():
+                raise ObjectNotFound('Falta un campo en la petición')
+        type = args[keys[0]]
+        calories = args[keys[1]]
+
+        child = Child(type, calories)
+        diet = Diet(child, data)
+
+        dietList = None
+        dietList = diet.get3foods()
+
+        if dietList is None:
+            raise ObjectNotFound('No existen dietas')
+
+        return dietList
+
+
 api.add_resource(DietListResource, '/api/v1.0/diets',
                  endpoint='diet_list_resource')
+
+api.add_resource(recomendation, '/api/v1.0/refoods',
+                 endpoint='recomendation')
