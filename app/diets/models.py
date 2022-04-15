@@ -381,13 +381,9 @@ class Diet:
         return dt_result
 
     def getDiets(self, days):
-<<<<<<< HEAD
-        result_desayuno = self.get_desayuno()
-=======
 
         result_desayuno = self.get_desayuno()
 
->>>>>>> 8e814d90d29d28609b5bc0cf5170a85a501fce50
         result_desayuno['Tipo'] = 'Desayuno'
 
         result_almuerzo = self.get_almuerzo()
@@ -413,30 +409,17 @@ class Diet:
         if self.child.type == 'Desayuno':
             result_desayuno = self.get_3_desayuno()
             result_desayuno['Tipo'] = 'Desayuno'
-<<<<<<< HEAD
-            dieta = result_desayuno.sample(n=3)
+            dieta = result_desayuno.sample(n=3).reset_index(drop=True)
 
         if self.child.type == 'Almuerzo':
             result_almuerzo = self.get_3_almuerzo()
             result_almuerzo['Tipo'] = 'Almuerzo'
-            dieta = result_almuerzo.sample(n=3)
-=======
-            dieta=result_desayuno.sample(n=3).reset_index(drop=True)
-
-        if self.child.type=='Almuerzo':
-            result_almuerzo = self.get_3_almuerzo()
-            result_almuerzo['Tipo'] = 'Almuerzo'
-            dieta=result_almuerzo.sample(n=3).reset_index(drop=True)
->>>>>>> 8e814d90d29d28609b5bc0cf5170a85a501fce50
+            dieta = result_almuerzo.sample(n=3).reset_index(drop=True)
 
         if self.child.type == 'Cena':
             result_cena = self.get_3_cena()
             result_cena['Tipo'] = 'Cena'
-<<<<<<< HEAD
-            dieta = result_cena.sample(n=3)
-=======
-            dieta=result_cena.sample(n=3).reset_index(drop=True)
->>>>>>> 8e814d90d29d28609b5bc0cf5170a85a501fce50
+            dieta = result_cena.sample(n=3).reset_index(drop=True)
 
         result = dieta.to_dict()
         return result
