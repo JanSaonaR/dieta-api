@@ -53,16 +53,7 @@ Una vez ya se tenga Conda instalado, podemos continuar con la instalación.
   ```sh
    flask run
   ```
- ### Ruta del API
- - /api/v1.0/diets
-
- ### Campos del API
- - age: Edad del niño - Entero
- - weight: Peso del niño - Flotante
- - height: Altura del niño - Entero 
- - activity: Nivel de actividad del niño (sedentario, baja_actividad, activo, muy_activo) - Cadena de texto
- - sex: Género del niño (**F** = Femenino, **M** = Masculino) - Caracter
- - preference: Lista de los ingredientes que el niño prefiere - Lista de cadenas de texto
- 
- #### IMPORTANTE:
- - Para evidenciar que el niño no tiene preferencias, se debe de enviar una lista vacía.
+ ### Rutas del API
+ - /api/v1.0/doc - Documentación Swagger
+ - /api/v1.0/diets - POST
+ - /api/v1.0/diets/refoods - POST
