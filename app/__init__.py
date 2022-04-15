@@ -1,18 +1,16 @@
 from flask import Flask, jsonify
-from flask_restful import Api
+from werkzeug.middleware.proxy_fix import ProxyFix
 
-from app.common.error_handling import ObjectNotFound, AppErrorBaseClass
-from app.diets.api_v1_0.resources import diets_v1_0_bp
-
-data = []
+from app.common.error_handling import ObjectNotFound
+from app.diets.api_v1_0 import diets_v1_0_bp
 
 
 def create_app(settings_module):
     app = Flask(__name__)
-    app.config.from_object(settings_module)
 
-    # Captura todos los errores 404
-    Api(app, catch_all_404s=True)
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+
+    app.config.from_object(settings_module)
 
     # Deshabilita el modo estricto de acabado de una URL con /
     app.url_map.strict_slashes = False
