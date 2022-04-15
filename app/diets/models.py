@@ -370,9 +370,9 @@ class Diet:
         return dt_result
 
     def getDiets(self, days):
-        print('A')
+
         result_desayuno = self.get_desayuno()
-        print('A')
+
         result_desayuno['Tipo'] = 'Desayuno'
 
         result_almuerzo = self.get_almuerzo()
@@ -396,17 +396,17 @@ class Diet:
         if self.child.type=='Desayuno':
             result_desayuno = self.get_3_desayuno()
             result_desayuno['Tipo'] = 'Desayuno'
-            dieta=result_desayuno.sample(n=3)
-            
+            dieta=result_desayuno.sample(n=3).reset_index(drop=True)
+
         if self.child.type=='Almuerzo':
             result_almuerzo = self.get_3_almuerzo()
             result_almuerzo['Tipo'] = 'Almuerzo'
-            dieta=result_almuerzo.sample(n=3)
+            dieta=result_almuerzo.sample(n=3).reset_index(drop=True)
 
         if self.child.type=='Cena':
             result_cena = self.get_3_cena()
             result_cena['Tipo'] = 'Cena'
-            dieta=result_cena.sample(n=3)
+            dieta=result_cena.sample(n=3).reset_index(drop=True)
 
         result = dieta.to_dict()               
         return result       
