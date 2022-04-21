@@ -3,3 +3,4 @@
 __pycache__/
 .vim/
 pyrightconfig.json
+.ipynb_checkpoints
