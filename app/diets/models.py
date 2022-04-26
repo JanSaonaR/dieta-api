@@ -394,11 +394,11 @@ class Diet:
 
         dieta = \
             pd.concat([result_desayuno.sort_values(by='Nivel_Preferencia',
-                       ascending=False).head(n=days),
+                       ascending=False).head(n=days).sample(frac=1),
                        result_almuerzo.sort_values(by='Nivel_Preferencia',
-                       ascending=False).head(n=days),
+                       ascending=False).head(n=days).sample(frac=1),
                        result_cena.sort_values(by='Nivel_Preferencia',
-                       ascending=False).head(n=days)], ignore_index=True)
+                       ascending=False).head(n=days).sample(frac=1)], ignore_index=True)
 
         result = dieta.to_dict()
         return result
