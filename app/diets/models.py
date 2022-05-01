@@ -129,15 +129,15 @@ class Diet:
 
         dt_desayuno['Proteinas'] = \
             (round(dt_desayuno['Proteinas'] *
-                   dt_desayuno['Multiplicador_Cantidad_Comer']))
+                   dt_desayuno['Multiplicador_Cantidad_Comer']*4))
 
         dt_desayuno['Grasas'] = \
             (round(dt_desayuno['Grasas'] *
-                   dt_desayuno['Multiplicador_Cantidad_Comer']))
+                   dt_desayuno['Multiplicador_Cantidad_Comer']*9))
 
         dt_desayuno['Carbohidratos'] = \
             (round(dt_desayuno['Carbohidratos'] *
-                   dt_desayuno['Multiplicador_Cantidad_Comer']))
+                   dt_desayuno['Multiplicador_Cantidad_Comer']*4))
 
         dt_desayuno['Ingredientes'] = \
             dt_desayuno.apply(split_ingredients, axis=1)
@@ -170,15 +170,15 @@ class Diet:
 
         dt_desayuno['Proteinas'] = \
             (round(dt_desayuno['Proteinas'] *
-             dt_desayuno['Multiplicador_Cantidad_Comer']))
+             dt_desayuno['Multiplicador_Cantidad_Comer']*4))
 
         dt_desayuno['Grasas'] = \
             (round(dt_desayuno['Grasas'] *
-             dt_desayuno['Multiplicador_Cantidad_Comer']))
+             dt_desayuno['Multiplicador_Cantidad_Comer']*9))
 
         dt_desayuno['Carbohidratos'] = \
             (round(dt_desayuno['Carbohidratos'] *
-             dt_desayuno['Multiplicador_Cantidad_Comer']))
+             dt_desayuno['Multiplicador_Cantidad_Comer']*4))
 
         dt_desayuno['Ingredientes'] = \
             dt_desayuno.apply(split_ingredients, axis=1)
@@ -221,15 +221,15 @@ class Diet:
 
         dt_almuerzo['Proteinas'] = \
             round(dt_almuerzo['Proteinas'] *
-                  dt_almuerzo['Multiplicador_Cantidad_Comer'])
+                  dt_almuerzo['Multiplicador_Cantidad_Comer']*4)
 
         dt_almuerzo['Grasas'] = \
             round(dt_almuerzo['Grasas'] *
-                  dt_almuerzo['Multiplicador_Cantidad_Comer'])
+                  dt_almuerzo['Multiplicador_Cantidad_Comer']*9)
 
         dt_almuerzo['Carbohidratos'] = \
             round(dt_almuerzo['Carbohidratos'] *
-                  dt_almuerzo['Multiplicador_Cantidad_Comer'])
+                  dt_almuerzo['Multiplicador_Cantidad_Comer']*4)
 
         dt_almuerzo['Ingredientes'] = \
             dt_almuerzo.apply(split_ingredients, axis=1)
@@ -273,15 +273,15 @@ class Diet:
 
             dt_almuerzo['Proteinas'] = \
                 round(dt_almuerzo['Proteinas'] *
-                      dt_almuerzo['Multiplicador_Cantidad_Comer'])
+                      dt_almuerzo['Multiplicador_Cantidad_Comer']*4)
 
             dt_almuerzo['Grasas'] = \
                 round(dt_almuerzo['Grasas'] *
-                      dt_almuerzo['Multiplicador_Cantidad_Comer'])
+                      dt_almuerzo['Multiplicador_Cantidad_Comer']*9)
 
             dt_almuerzo['Carbohidratos'] = \
                 round(dt_almuerzo['Carbohidratos'] *
-                      dt_almuerzo['Multiplicador_Cantidad_Comer'])
+                      dt_almuerzo['Multiplicador_Cantidad_Comer']*4)
 
             dt_almuerzo['Ingredientes'] = \
                 dt_almuerzo.apply(split_ingredients, axis=1)
@@ -311,15 +311,15 @@ class Diet:
                                                             axis=1)
         dt_cena['Proteinas'] = \
             round(dt_cena['Proteinas'] *
-                  dt_cena['Multiplicador_Cantidad_Comer'])
+                  dt_cena['Multiplicador_Cantidad_Comer']*4)
 
         dt_cena['Grasas'] = \
             round(dt_cena['Grasas'] *
-                  dt_cena['Multiplicador_Cantidad_Comer'])
+                  dt_cena['Multiplicador_Cantidad_Comer']*9)
 
         dt_cena['Carbohidratos'] = \
             round(dt_cena['Carbohidratos'] *
-                  dt_cena['Multiplicador_Cantidad_Comer'])
+                  dt_cena['Multiplicador_Cantidad_Comer']*4)
 
         dt_cena['Ingredientes'] = \
             dt_cena.apply(split_ingredients, axis=1)
@@ -361,15 +361,15 @@ class Diet:
 
             dt_cena['Proteinas'] = \
                 round(dt_cena['Proteinas'] *
-                      dt_cena['Multiplicador_Cantidad_Comer'])
+                      dt_cena['Multiplicador_Cantidad_Comer']*4)
 
             dt_cena['Grasas'] = \
                 round(dt_cena['Grasas'] *
-                      dt_cena['Multiplicador_Cantidad_Comer'])
+                      dt_cena['Multiplicador_Cantidad_Comer']*9)
 
             dt_cena['Carbohidratos'] = \
                 round(dt_cena['Carbohidratos'] *
-                      dt_cena['Multiplicador_Cantidad_Comer'])
+                      dt_cena['Multiplicador_Cantidad_Comer']*4)
 
             dt_cena['Ingredientes'] = \
                 dt_cena.apply(split_ingredients, axis=1)
@@ -385,7 +385,7 @@ class Diet:
         result_desayuno = self.get_desayuno()
 
         result_desayuno['Tipo'] = 'Desayuno'
-
+    
         result_almuerzo = self.get_almuerzo()
         result_almuerzo['Tipo'] = 'Almuerzo'
 
